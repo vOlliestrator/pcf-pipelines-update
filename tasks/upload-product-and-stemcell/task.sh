@@ -40,7 +40,7 @@ if [ -n "$STEMCELL_VERSION" ]; then
     jq \
       --arg version "$STEMCELL_VERSION" \
       --arg glob "$IAAS" \
-    '.stemcells[] | select(contains($version) and contains($glob))'
+    '.available_stemcells[] | select(.version | contains($version))'
   )
 
   if [[ -z "$stemcell" ]]; then
